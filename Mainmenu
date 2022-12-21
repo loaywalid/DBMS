@@ -1,0 +1,52 @@
+#! usr/bin/bash
+
+#make database directory if not exist 
+mkdir -p database 
+cd database 
+
+function selection(){
+
+    options=("Create-Database" "List-all-Databases" "Drop-Database" "Connect-Database" "Exit")
+
+select opt in "${options[@]}"
+do 
+case $opt in
+"Create-Database") 
+source .././createdatabase
+
+;;
+"List-all-Databases")
+
+clear
+
+echo "All databases" 
+echo "-------------------------------------------------------------------------"
+
+var=` ls -d */`
+counter=1
+for i in $var
+do 
+
+echo "$counter) $i"
+echo "-------------------------------------------------------------------------"
+
+counter=$[$counter +1]
+done
+ selection
+;;
+"Drop-Database")
+source .././dropdatabase
+;;
+"Connect-Database")
+    source .././connectdatabase
+;;
+Exit)
+echo "Exit" 
+break ;
+;;
+esac
+done
+   
+}
+
+selection

@@ -31,9 +31,9 @@ fi
 
 databaseconnectionselection
 ;;
-"Drop-Tables")
-echo "Drop table" 
-break ;
+"Drop-Table")
+    source ./../droptable
+    databaseconnectionselection
 ;;
 "Insert-Into-Table")
 echo "insert into table" 

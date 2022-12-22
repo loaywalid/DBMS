@@ -1,3 +1,18 @@
 #! usr/bin/bash
 
-echo "table deleted"
+read -p "enter the table you want to delete : " name
+
+if [[ -e ~/database/database/$dbname/$name ]] ; then 
+clear
+echo "Table $name deleted succesfully ! "
+echo "--------------------------------------------"
+
+    rm ~/database/database/$dbname/$name
+    rm ~/database/database/$dbname/"$name.md"
+    databaseconnectionselection
+else
+    clear
+    echo "Table $name not existed ! "
+    echo "--------------------------------------------"
+    databaseconnectionselection
+fi

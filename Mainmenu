@@ -10,11 +10,11 @@ function selection(){
 select opt in "${options[@]}"
 do 
 case $opt in
-
 "Create-Database") 
 source .././createdatabase
 ;;
 "List-all-Databases")
+
 clear
 echo "All databases" 
 echo "-------------------------------------------------------------------------"
@@ -25,6 +25,7 @@ do
 echo "$counter) $i"
 echo "-------------------------------------------------------------------------"
 counter=$[$counter +1]
+
 done
  selection
 ;;
@@ -33,11 +34,10 @@ source .././dropdatabase
 ;;
 "Connect-Database")
     source .././connectdatabase
-
 ;;
 Exit)
 echo "Exit" 
-break ;
+exit ;
 ;;
 esac
 done

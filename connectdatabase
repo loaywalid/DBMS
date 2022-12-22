@@ -11,7 +11,8 @@ case $opt in
 
 "Create-Table") 
 
-echo "table created "
+source .././createtable
+
 databaseconnectionselection
 ;;
 "List-all-Tables")
@@ -36,7 +37,8 @@ break ;
 ;;
 "Exit")
 echo "Exit"
-break ;
+clear
+selection
 ;;
 esac
 done
@@ -51,7 +53,6 @@ clear
 echo "-----------------------------------------------------"
 echo "Connected to $dbname database"
 echo "-----------------------------------------------------"
-
 
 databaseconnectionselection
 

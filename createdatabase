@@ -1,3 +1,5 @@
+#! usr/bin/bash
+
 function createdatabase(){
 
     read -p "Please enter your database name: " dir

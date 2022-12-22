@@ -11,7 +11,7 @@ select opt in "${options[@]}"
 do 
 case $opt in
 "Create-Database") 
-echo "database created"
+source .././createdatabase
 ;;
 "List-all-Databases")
 echo " data base listed"

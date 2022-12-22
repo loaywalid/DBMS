@@ -36,8 +36,8 @@ databaseconnectionselection
     databaseconnectionselection
 ;;
 "Insert-Into-Table")
-echo "insert into table" 
-break ;
+    source ./../inserttable
+    databaseconnectionselection
 ;;
 "Select-from-table")
 echo "Select-from-table"

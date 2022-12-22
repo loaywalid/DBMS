@@ -10,14 +10,26 @@ function selection(){
 select opt in "${options[@]}"
 do 
 case $opt in
+
 "Create-Database") 
 source .././createdatabase
 ;;
 "List-all-Databases")
-echo " data base listed"
+clear
+echo "All databases" 
+echo "-------------------------------------------------------------------------"
+var=` ls -d */`
+counter=1
+for i in $var
+do 
+echo "$counter) $i"
+echo "-------------------------------------------------------------------------"
+counter=$[$counter +1]
+done
+ selection
 ;;
 "Drop-Database")
-echo "database deleted"
+source .././dropdatabase
 ;;
 "Connect-Database")
 echo "database connected";;

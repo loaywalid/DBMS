@@ -1,3 +1,31 @@
 #! usr/bin/bash
-
 echo "inserting into table"
+
+read -p "please enter table name : " tname
+
+if [[ ! -e ~/database/database/$dbname/$tname ]] ; then
+    clear
+    echo "Table not existed ! "
+    databaseconnectionselection
+
+    else 
+        read -p "Please insert primary key : " primarykey
+        x=$(head -n1 ~/database/database/$dbname/"$tname.md" | awk -F : '{print $1;}') 
+        if [ "$x" = "int" ] && [[ $primarykey =~ [0-99]+$ ]] ;then 
+        echo "$primarykey:" >> ~/database/database/$dbname/$tname
+        elif  [ "$x" = "string" ] ; then
+        echo  "$primarykey:" >> ~/database/database/$dbname/$tname
+
+        fi
+        databaseconnectionselection
+
+fi
+
+
+
+
+
+
+
+
+

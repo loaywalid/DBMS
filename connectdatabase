@@ -1,0 +1,66 @@
+#! usr/bin/bash
+read -p "Please enter database name to connect: " dbname
+
+function databaseconnectionselection(){
+
+    options=("Create-Table" "List-all-Tables" "Drop-Table" "Insert-Into-Table" "Select-from-table" "Exit")
+
+select opt in "${options[@]}"
+do 
+case $opt in
+
+"Create-Table") 
+
+echo "table created "
+databaseconnectionselection
+;;
+"List-all-Tables")
+
+clear
+
+echo"list all tables"
+
+databaseconnectionselection
+;;
+"Drop-Tables")
+echo "Drop table" 
+break ;
+;;
+"Insert-Into-Table")
+echo "insert into table" 
+break ;
+;;
+"Select-from-table")
+echo "Select-from-table"
+break ;
+;;
+"Exit")
+echo "Exit"
+break ;
+;;
+esac
+done
+   
+}
+
+
+function connectdb(){
+
+    if [[ -e $dbname ]] ; then
+clear
+echo "-----------------------------------------------------"
+echo "Connected to $dbname database"
+echo "-----------------------------------------------------"
+
+
+databaseconnectionselection
+
+else
+echo "-----------------------------------------------------"
+echo "database not existed !"
+echo "-----------------------------------------------------"
+selection
+fi
+}
+
+connectdb

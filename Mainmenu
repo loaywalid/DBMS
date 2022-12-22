@@ -32,7 +32,9 @@ done
 source .././dropdatabase
 ;;
 "Connect-Database")
-echo "database connected";;
+    source .././connectdatabase
+
+;;
 Exit)
 echo "Exit" 
 break ;

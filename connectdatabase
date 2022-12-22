@@ -17,9 +17,17 @@ databaseconnectionselection
 ;;
 "List-all-Tables")
 
-clear
-
-echo"list all tables"
+    clear
+if [ -z "$(ls -A ~/database/database/$dbname)" ]; then
+   echo " database is empty ! 
+   
+   "
+else
+    echo "Database contains those tables.. 
+    
+    "
+    ls -I "*.md" ~/database/database/$dbname 
+fi
 
 databaseconnectionselection
 ;;

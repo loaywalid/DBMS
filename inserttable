@@ -17,10 +17,34 @@ if [[ ! -e ~/database/database/$dbname/$tname ]] ; then
         echo  "$primarykey:" >> ~/database/database/$dbname/$tname
 
         fi
-        databaseconnectionselection
+        
 
 fi
 
+
+
+declare -i number=$(head -n1 ~/database/database/$dbname/"$tname.md" | awk -F : '{print NF-1 ;}')
+
+for i in $(seq 1 $number); 
+do 
+    col_name=$(head -n1 ~/database/database/$dbname/$tname | sed  $'s/:/ /g' | awk -v i=$i -F " " '{ print $i }')
+    col_type=$(head -n1 ~/database/database/$dbname/"$tname.md" | sed  $'s/:/ /g' | awk -v i=$i -F " " '{ print $i }')
+    while [ -e ~/database/database/$dbname/$tname ]
+        do
+            echo "please enter the $col_name"
+            read x
+            if [ "$col_type" = "int" ] && [[ $x =~ [0-99]+$ ]]
+                then echo -n  "$x:" >> ~/database/database/$dbname/$tname
+                break
+            elif [ "$col_type" = "string" ]
+                then echo -n  "$x:" >> ~/database/database/$dbname/$tname
+                break
+            else
+                echo "type is not matched, type = $col_type"
+                continue 
+            fi
+        done
+done        
 
 
 

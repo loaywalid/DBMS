@@ -3,7 +3,7 @@ read -p "Please enter database name to connect: " dbname
 
 function databaseconnectionselection(){
 
-    options=("Create-Table" "List-all-Tables" "Drop-Table" "Insert-Into-Table" "Select-from-table" "Exit")
+    options=("Create-Table" "List-all-Tables" "Drop-Table" "Insert-Into-Table" "Select-from-table" "update-table" "Exit")
 
 select opt in "${options[@]}"
 do 
@@ -41,6 +41,10 @@ databaseconnectionselection
 ;;
 "Select-from-table")
 echo "Select-from-table"
+break ;
+;;
+"update-table")
+echo "updating table"
 break ;
 ;;
 "Exit")

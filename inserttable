@@ -1,5 +1,4 @@
 #! usr/bin/bash
-echo "inserting into table"
 
 read -p "please enter table name : " tname
 
@@ -9,19 +8,24 @@ if [[ ! -e ~/database/database/$dbname/$tname ]] ; then
     databaseconnectionselection
 
     else 
-        read -p "Please insert primary key : " primarykey
         x=$(head -n1 ~/database/database/$dbname/"$tname.md" | awk -F : '{print $1;}') 
+        read -p "Please insert primary key : " primarykey
+
+        
+
         if [ "$x" = "int" ] && [[ $primarykey =~ [0-99]+$ ]] ;then 
         echo "$primarykey:" >> ~/database/database/$dbname/$tname
+
+
         elif  [ "$x" = "string" ] ; then
         echo  "$primarykey:" >> ~/database/database/$dbname/$tname
 
+
+        else
+        echo "type is not matched, type = $x"
         fi
-        
 
 fi
-
-
 
 declare -i number=$(head -n1 ~/database/database/$dbname/"$tname.md" | awk -F : '{print NF-1 ;}')
 
@@ -32,7 +36,7 @@ do
     while [ -e ~/database/database/$dbname/$tname ]
         do
             echo "please enter the $col_name"
-            read x
+        read x
             if [ "$col_type" = "int" ] && [[ $x =~ [0-99]+$ ]]
                 then echo -n  "$x:" >> ~/database/database/$dbname/$tname
                 break
@@ -45,11 +49,3 @@ do
             fi
         done
 done        
-
-
-
-
-
-
-
-

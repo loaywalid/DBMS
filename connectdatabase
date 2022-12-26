@@ -44,8 +44,8 @@ echo "Select-from-table"
 break ;
 ;;
 "update-table")
-echo "updating table"
-break ;
+source ./../updatetable
+databaseconnectionselection
 ;;
 "Exit")
 echo "Exit"

@@ -20,7 +20,9 @@ source .././createdatabase
 "List-all-Databases")
 clear
 var=` ls -d */` 
-zenity --info --title="Listing" --text="databases :
+zenity --info --title="Listing" --text="               databases                 
+
+
  $var" --no-wrap
 
  selection
@@ -32,7 +34,6 @@ source .././dropdatabase
     source .././connectdatabase
 ;;
 Exit)
-echo "Exit" 
 if zenity --question --title="Exit" --text="Are you sure you want to exit terminal?" --no-wrap 
     then
 clear

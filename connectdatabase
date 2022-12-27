@@ -11,39 +11,43 @@ case $opt in
 
 "Create-Table") 
 
-source .././createtable
+    source .././createtable
 
-databaseconnectionselection
+    databaseconnectionselection
 ;;
 "List-all-Tables")
 
     clear
-if [ -z "$(ls -A ~/database/database/$dbname)" ]; then
+    if [ -z "$(ls -A ~/database/database/$dbname)" ]; then
    echo " database is empty ! 
    
-   "
-else
+        "
+    else
     echo "Database contains those tables.. 
     
-    "
+        "
     ls -I "*.md" ~/database/database/$dbname 
-fi
+    echo "
+    "
+    fi
 
-databaseconnectionselection
+    databaseconnectionselection
 ;;
 "Drop-Table")
     source ./../droptable
-    databaseconnectionselection
+    databaseconnectionselection 
 ;;
 "Insert-Into-Table")
-    source ./../inserttable
+source ./../inserttable
     databaseconnectionselection
 ;;
 "Select-from-table")
-echo "Select-from-table"
-break ;
+source ./../selecttable
+
+    databaseconnectionselection
 ;;
-"update-table")
+
+"update-table" )
 source ./../updatetable
 databaseconnectionselection
 ;;

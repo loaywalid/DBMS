@@ -1,0 +1,16 @@
+#! usr/bin/bash
+
+read -p "Please enter table name you want to select from : " seltable
+
+if [[ ! -e ~/database/database/$dbname/$seltable ]] ; then
+
+echo "Table not existed ! "
+    databaseconnectionselection
+
+else
+clear
+echo "-------------------------------------------------------"
+sed -n '1!p' ~/database/database/$dbname/$seltable 
+echo "-------------------------------------------------------"
+
+fi

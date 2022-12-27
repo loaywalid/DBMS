@@ -44,7 +44,7 @@ do
                 then echo -n   "$x:" >> ~/database/database/$dbname/$tname
                 break
             else
-zenity --warning --title="Warning" --text="type is not matched, type = $x" --no-wrap
+zenity --warning --title="Warning" --text="data type is not matched" --no-wrap
                 continue 
             fi
         done

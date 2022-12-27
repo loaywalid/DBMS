@@ -1,31 +1,25 @@
-#! usr/bin/bash
+zenity --info --title="Creating New Database" --text="Please enter a name that only starts with letters !" --no-wrap
 
-function createdatabase(){
-
-    read -p "Please enter your database name: " dir
-
-if [[ ! -e $dir && $dir =~ ^([a-zA-Z\_])+([a-zA-Z0-9\_])*$ ]]; then
-    mkdir $dir
+dir=$(zenity --entry --title="Enter your new database name")
+if [[ ! -e $dir && $dir =~ ^([a-zA-Z\_])+([a-zA-Z0-9\_])*$ ]] ; then
+clear
+     mkdir $dir
     clear
-    echo "-----------------------------------------------------"
-    echo "$dir Database created succesfully ! "
-    echo "-----------------------------------------------------"
+zenity --info --title="Done" --text="$dir Database created succesfully !" --no-wrap
+
     selection
 
-elif [[ -e $dir ]] ; then
+    elif [[ -e $dir ]] ; then
 clear
-echo "-----------------------WARNING!!!-----------------"
-echo "-----------------------------------------------------"
-echo "$dir database already exists"
-echo "-----------------------------------------------------"
+zenity --warning --title="Warning ! " --text="$dir database already exists" --no-wrap
+
+
 selection
+
+
 else 
 clear
-echo "Error !"
-echo "Can not create database, the name contains special charachters or spaces on it"
-echo "-------------------------------------------------------------------------"
+zenity --warning --title="Error ! " --text="Can not create database, the name contains special charachters or spaces on it" --no-wrap
+
 selection
 fi    
-}
-
-createdatabase

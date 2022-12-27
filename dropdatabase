@@ -1,24 +1,15 @@
-#! usr/bin/bash
-
-read -p "Please enter database you want to delete: " drop
+drop=$(zenity --entry --title="Enter database name you want to delete")
 if [[ -e $drop ]] ; then
 clear
-echo "-----------------------------------------------------"
-echo "database $drop deleted succesfully !"
-echo "-----------------------------------------------------"
-echo "                                                      "
-echo "                                                      "
+zenity --warning --title="Done " --text="database $drop deleted successfuly !" --no-wrap
 
 rm -r $drop
 
 selection
 
+
 else
 clear
-echo "-----------------------------------------------------"
-echo "database $drop not existed !"
-echo "-----------------------------------------------------"
-echo "                                                      "
-echo "                                                      "
+zenity --warning --title="Can not delete " --text="database $drop not existed !" --no-wrap
 selection
 fi

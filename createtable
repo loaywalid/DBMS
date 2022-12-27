@@ -1,53 +1,46 @@
-#! usr/bin/bash
-read -p "Please enter table name : " tablename
+ #! usr/bin/bash
+	tablename=$(zenity --entry --title="Please enter table name: ")
+    if [[ -e ~/database/database/$dbname/$tablename ]] ; then
+	    clear
+	   zenity --warning --title="Warning" --text="$tablename table already exists!" --no-wrap
 
-if [[ -e $tablename ]] ; then
-    clear
-    echo "-----------------------WARNING!!!-----------------"
-    echo "-----------------------------------------------------"
-    echo "$tablename table already exists !"
-    echo "-----------------------------------------------------"
+	databaseconnectionselection
 
-    databaseconnectionselection
+	elif [[  ! $tablename =~ ^([a-zA-Z\_])+([a-zA-Z0-9\_])*$ ]] ; then
+	    clear
+	   zenity --warning --title="Warning" --text="Please enter a valid name !" --no-wrap
 
-elif [[  ! $tablename =~ ^([a-zA-Z\_])+([a-zA-Z0-9\_])*$ ]] ; then
-    clear
-    echo "-----------------------WARNING!!!-----------------"
-    echo "-----------------------------------------------------"
-    echo "Please enter a valid name !"
-    echo "-----------------------------------------------------"
+	    databaseconnectionselection
 
-    databaseconnectionselection
-
-elif [[  ! -e $tablename && $tablename =~ ^([a-zA-Z\_])+([a-zA-Z0-9\_])*$ ]] ; then
+	elif [[  ! -e $tablename && $tablename =~ ^([a-zA-Z\_])+([a-zA-Z0-9\_])*$ ]] ; then
 
     touch  ~/database/database/$dbname/$tablename
     touch  ~/database/database/$dbname/"$tablename.md"
 
 fi
-read  -p "Plese enter number of columns : " colnum
 
+colnum=$(zenity --entry --title="please enter number of columns")
 while [[ ! $colnum =~ [0-99]+$ ]] ;
     do
-    echo "Please enter a valid number !"
+	   zenity --warning --title="Error" --text="Please enter a valid number !" --no-wrap
     done
-
+    
 for i in $( seq 1 $colnum);
     do
-    echo "column number $i ,"
+zenity --info --title="Column number" --text="$i" --no-wrap
     if (( $i==1 ));
-        then echo "Please enter the primary key : "
-        read pk
-        echo "Please enter the type of key - (string / int ) :"
-        read datatype
+        then
+         pk=$(zenity --entry --title="Please enter the primary key :")
+    datatype=$(zenity --entry --title="Please enter the type of key - (string / int ) :")
+    
 
             echo -n "$pk:" > ~/database/database/$dbname/$tablename
             echo -n "$datatype:" > ~/database/database/$dbname/"$tablename.md"
      else 
-        read -p "please enter column name : " colname
-        read -p "please enter type of column - (string /int) : "   datatype  
+        colname=$(zenity --entry --title="please enter column name")
+datatype=$(zenity --entry --title="please enter type of column - (string /int) :")
         echo -n "$colname:" >> ~/database/database/$dbname/$tablename
         echo -n "$datatype:" >> ~/database/database/$dbname/"$tablename.md"
         fi
     done 
-
+    

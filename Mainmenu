@@ -2,35 +2,27 @@
 clear
 mkdir -p database 
 cd database   
-echo "                                      "
-echo "                               Welcome  to DBMS! "
-echo "                                     "
+zenity --info --title="Welcome to DBMS" --text="Please choose what you like to do !" --no-wrap
+
 
 function selection(){
 
-    options=("Create-Database" "List-all-Databases" "Drop-Database" "Connect-Database" "Exit")
+    items=("Create-Database" "List-all-Databases" "Drop-Database" "Connect-Database" "Exit")
 
-select opt in "${options[@]}"
-do 
-case $opt in
+while item=$(zenity --title="$title" --text="$prompt" --list \
+               --column="Options" "${items[@]}")
+do
+    case "$item" in
 "Create-Database") 
 source .././createdatabase
+
 ;;
 "List-all-Databases")
-
 clear
+var=` ls -d */` 
+zenity --info --title="Listing" --text="databases :
+ $var" --no-wrap
 
-echo "                               DATABASES : " 
-echo "-------------------------------------------------------------------------"
-var=` ls -d */`
-counter=1
-for i in $var
-do 
-echo "$counter) $i"
-echo "-------------------------------------------------------------------------"
-echo "                        "
-counter=$[$counter +1]
-done
  selection
 ;;
 "Drop-Database")
@@ -41,7 +33,11 @@ source .././dropdatabase
 ;;
 Exit)
 echo "Exit" 
-exit ;
+if zenity --question --title="Exit" --text="Are you sure you want to exit terminal?" --no-wrap 
+    then
+clear
+exit
+fi
 ;;
 esac
 done
@@ -49,3 +45,4 @@ done
 }
 
 selection
+

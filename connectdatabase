@@ -1,13 +1,16 @@
 #! usr/bin/bash
-read -p "Please enter database name to connect: " dbname
+echo "   
+"
+dbname=$(zenity --entry --title="Please enter database name to connect:")
 
 function databaseconnectionselection(){
 
-    options=("Create-Table" "List-all-Tables" "Drop-Table" "Insert-Into-Table" "Select-from-table" "update-table" "Exit")
+    items=("Create-Table" "List-all-Tables" "Drop-Table" "Insert-Into-Table" "Select-from-table" "update-table" "Exit")
 
-select opt in "${options[@]}"
-do 
-case $opt in
+while item=$(zenity --title="$title" --text="$prompt" --list \
+               --column="Options" "${items[@]}")
+do
+    case "$item" in
 
 "Create-Table") 
 
@@ -19,27 +22,25 @@ case $opt in
 
     clear
     if [ -z "$(ls -A ~/database/database/$dbname)" ]; then
-   echo " database is empty ! 
-   
-        "
+       zenity --warning --title="Warning" --text="Database is empty " --no-wrap
+
     else
-    echo "Database contains those tables.. 
-    
-        "
-    ls -I "*.md" ~/database/database/$dbname 
-    echo "
-    "
+x=` ls -I "*.md" ~/database/database/$dbname ` 
+zenity --info --title="Listing" --text="tables :
+ $x" --no-wrap
     fi
 
     databaseconnectionselection
 ;;
 "Drop-Table")
     source ./../droptable
-    databaseconnectionselection 
+    databaseconnectionselection
+    
 ;;
 "Insert-Into-Table")
 source ./../inserttable
     databaseconnectionselection
+
 ;;
 "Select-from-table")
 source ./../selecttable
@@ -50,11 +51,14 @@ source ./../selecttable
 "update-table" )
 source ./../updatetable
 databaseconnectionselection
+
 ;;
 "Exit")
-echo "Exit"
+if zenity --question --title="Exit" --text="Are you sure you want to exit?" --no-wrap 
+    then
 clear
 selection
+fi
 ;;
 esac
 done
@@ -66,18 +70,16 @@ function connectdb(){
 
     if [[ -e $dbname ]] ; then
 clear
-echo "-----------------------------------------------------"
-echo "Connected to $dbname database"
-echo "-----------------------------------------------------"
+zenity --info --title="Done" --text="Connected to $dbname database !" --no-wrap
+
 
 databaseconnectionselection
 
 else
-echo "-----------------------------------------------------"
-echo "database not existed !"
-echo "-----------------------------------------------------"
+ zenity --warning --title="Error" --text="Database $dbname not exisetd !" --no-wrap
 selection
 fi
 }
 
 connectdb
+

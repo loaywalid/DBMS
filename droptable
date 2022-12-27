@@ -1,18 +1,16 @@
 #! usr/bin/bash
-
-read -p "enter the table you want to delete : " name
-
-if [[ -e ~/database/database/$dbname/$name ]] ; then 
+name=$(zenity --entry --title="Enter table name you want to delete")
+if [[ -e ~/database/database/$dbname/$name ]] ; then
 clear
-echo "Table $name deleted succesfully ! "
-echo "--------------------------------------------"
+     zenity --warning --title="Done " --text="Table $name deleted sucessfuly !" --no-wrap
 
     rm ~/database/database/$dbname/$name
     rm ~/database/database/$dbname/"$name.md"
     databaseconnectionselection
+
 else
-    clear
-    echo "Table $name not existed ! "
-    echo "--------------------------------------------"
+clear
+     zenity --warning --title="Can not delete " --text="Table $name not existed !" --no-wrap
+
     databaseconnectionselection
 fi

@@ -11,7 +11,9 @@ zenity --warning --title="Warning" --text="Table not existed !" --no-wrap
 else
 clear
 m=` sed -n '1!p' ~/database/database/$dbname/$seltable ` 
-zenity --info --title="View Table" --text="                  $seltable :
+zenity --info --title="   View Table" --text="                  $seltable :
+
+
  $m" --no-wrap
 
 fi

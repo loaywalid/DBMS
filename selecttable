@@ -1,7 +1,6 @@
 #! usr/bin/bash
 
-read -p "Please enter table name you want to select from : " seltable
-
+seltable=$(zenity --entry --title="Please enter table name you want to select from")
 if [[ ! -e ~/database/database/$dbname/$seltable ]] ; then
 
 zenity --warning --title="Warning" --text="Table not existed !" --no-wrap
@@ -11,8 +10,8 @@ zenity --warning --title="Warning" --text="Table not existed !" --no-wrap
 
 else
 clear
-echo "-------------------------------------------------------"
-sed -n '1!p' ~/database/database/$dbname/$seltable 
-echo "-------------------------------------------------------"
+m=` sed -n '1!p' ~/database/database/$dbname/$seltable ` 
+zenity --info --title="View Table" --text="                  $seltable :
+ $m" --no-wrap
 
 fi

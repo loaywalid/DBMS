@@ -1,16 +1,15 @@
 #! usr/bin/bash
-read -p "please enter the table name you want to update " uptablename
 
-
+uptablename=$(zenity --entry --title="please enter the table name you want to update")
 if [ ! -e ~/database/database/$dbname/$uptablename ] ; then
     zenity --warning --title="Warning" --text="Table not existed !" --no-wrap
 
-
 else
-    read -p "enter value you want to change: " val1
-    read -p "enter new value : " val2
 
-sed -n "s/$val1/$val2/gp" ~/database/database/lol/ahly >> ~/database/database/lol/ahly
+val1=$(zenity --entry --title="enter value you want to change")
+val2=$(zenity --entry --title="enter new value")
+
+sed -n "s/$val1/$val2/gp" ~/database/database/$dbname/$uptablename >> ~/database/database/$dbname/$uptablename
 
 
 

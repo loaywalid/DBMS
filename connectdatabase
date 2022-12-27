@@ -26,8 +26,9 @@ do
 
     else
 x=` ls -I "*.md" ~/database/database/$dbname ` 
-zenity --info --title="Listing" --text="tables :
- $x" --no-wrap
+zenity --info --title="    Listing" --text="                Tables  
+
+     $x" --no-wrap
     fi
 
     databaseconnectionselection

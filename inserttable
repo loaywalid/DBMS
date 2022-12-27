@@ -14,7 +14,7 @@ if [[ ! -e ~/database/database/$dbname/$tname ]] ; then
         
 
         if [ "$x" = "int" ] && [[ $primarykey =~ [0-99]+$ ]] ;then 
-        echo "$primarykey:" >> ~/database/database/$dbname/$tname
+        echo  "$primarykey:" >> ~/database/database/$dbname/$tname
 
 
         elif  [ "$x" = "string" ] ; then
@@ -23,6 +23,7 @@ if [[ ! -e ~/database/database/$dbname/$tname ]] ; then
 
         else
         echo "type is not matched, type = $x"
+        break ;
         fi
 
 fi
@@ -48,5 +49,4 @@ do
                 continue 
             fi
         done
-        
 done        

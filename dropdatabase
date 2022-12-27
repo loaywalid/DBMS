@@ -6,14 +6,19 @@ clear
 echo "-----------------------------------------------------"
 echo "database $drop deleted succesfully !"
 echo "-----------------------------------------------------"
+echo "                                                      "
+echo "                                                      "
 
 rm -r $drop
 
 selection
 
 else
+clear
 echo "-----------------------------------------------------"
 echo "database $drop not existed !"
 echo "-----------------------------------------------------"
+echo "                                                      "
+echo "                                                      "
 selection
 fi

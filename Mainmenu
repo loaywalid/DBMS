@@ -1,7 +1,10 @@
 #! usr/bin/bash
-
+clear
 mkdir -p database 
-cd database 
+cd database   
+echo "                                      "
+echo "                               Welcome  to DBMS! "
+echo "                                     "
 
 function selection(){
 
@@ -16,7 +19,8 @@ source .././createdatabase
 "List-all-Databases")
 
 clear
-echo "All databases" 
+
+echo "                               DATABASES : " 
 echo "-------------------------------------------------------------------------"
 var=` ls -d */`
 counter=1
@@ -24,8 +28,8 @@ for i in $var
 do 
 echo "$counter) $i"
 echo "-------------------------------------------------------------------------"
+echo "                        "
 counter=$[$counter +1]
-
 done
  selection
 ;;
